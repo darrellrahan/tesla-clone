@@ -1,17 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import Fade from "react-reveal";
 
 const Section = (prop) => {
   return (
     <Wrap bgImg={prop.img}>
-      <ItemText>
-        <h1 style={{ fontSize: "3rem" }}>{prop.model}</h1>
-        <p style={{ marginTop: "8px" }}>{prop.desc}</p>
-      </ItemText>
+      <Fade bottom>
+        <ItemText>
+          <h1 style={{ fontSize: "3rem" }}>{prop.model}</h1>
+          <p style={{ marginTop: "8px" }}>{prop.desc}</p>
+        </ItemText>
+      </Fade>
       <Buttons>
         <ButtonGroup>
-          <LeftButton rBtn={prop.rBtnText}>{prop.lBtnText}</LeftButton>
-          {prop.rBtnText && <RightButton>{prop.rBtnText}</RightButton>}
+          <Fade left>
+            <LeftButton rBtn={prop.rBtnText}>{prop.lBtnText}</LeftButton>
+          </Fade>
+          {prop.rBtnText && (
+            <Fade right>
+              <RightButton>{prop.rBtnText}</RightButton>
+            </Fade>
+          )}
         </ButtonGroup>
         <DownArrow src="/images/down-arrow.svg" />
       </Buttons>
