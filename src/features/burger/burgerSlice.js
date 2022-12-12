@@ -2,6 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [
+    "Model S",
+    "Model 3",
+    "Model X",
+    "Model Y",
+    "Solar Roof",
+    "Solar Panels",
     "Existing Inventory",
     "Used Inventory",
     "Trade-In",
@@ -17,6 +23,8 @@ const initialState = {
     "Find Us",
     "Support",
     "Investor Relations",
+    "Shop",
+    "Account",
   ],
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Section from "./Section";
 
-function Home() {
+const Home = () => {
   return (
     <Container>
       <Section
@@ -50,9 +50,11 @@ function Home() {
       <Section model="Accessories" img="accessories.jpg" lBtnText="shop now" />
     </Container>
   );
-}
+};
 
 export default Home;
+
+// CSS
 
 const Container = styled.div`
   height: 100vh;

@@ -30,3 +30,12 @@ a {
     transform: translateY(3px);
   }
 }
+
+.hover-bg {
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.hover-bg:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

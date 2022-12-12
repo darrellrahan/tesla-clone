@@ -5,9 +5,10 @@ import { selectCenterItems } from "../features/centerHeader/centerHeaderSlice";
 import { selectRightItems } from "../features/rightHeader/rightHeaderSlice";
 import { selectBurgerItems } from "../features/burger/burgerSlice";
 import { useSelector } from "react-redux";
+import { Drawer, ListItem, ListItemText } from "@mui/material";
 
 const Header = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isBurger, setIsBurger] = useState(false);
   const centerItems = useSelector(selectCenterItems);
   const rightItems = useSelector(selectRightItems);
   const burgerItems = useSelector(selectBurgerItems);
@@ -20,7 +21,7 @@ const Header = () => {
       <CenterMenu>
         {centerItems &&
           centerItems.map((item, index) => (
-            <a key={index} href="#">
+            <a key={index} href="#" className="hover-bg">
               {item}
             </a>
           ))}
@@ -28,27 +29,38 @@ const Header = () => {
       <RightMenu>
         {rightItems &&
           rightItems.map((item, index) => (
-            <a key={index} href="#" className="collapse">
+            <a key={index} href="#" className="collapse hover-bg">
               {item}
             </a>
           ))}
-        <a href="#" className="menu" onClick={() => setIsCollapsed(true)}>
+        <a href="#" className="menu hover-bg" onClick={() => setIsBurger(true)}>
           Menu
         </a>
       </RightMenu>
-      {isCollapsed && (
-        <BurgerNav>
+      <Drawer
+        open={isBurger}
+        anchor={"right"}
+        onClose={() => setIsBurger(false)}
+      >
+        <div
+          style={{ width: 300, padding: "28px" }}
+          onClick={() => setIsBurger(false)}
+        >
           <CloseWrapper>
-            <Close onClick={() => setIsCollapsed(false)} />
+            <Close className="hover-bg" />
           </CloseWrapper>
-          {burgerItems &&
-            burgerItems.map((item, index) => (
-              <li key={index}>
-                <a href="#">{item}</a>
-              </li>
-            ))}
-        </BurgerNav>
-      )}
+          {burgerItems.map((item, index) => (
+            <ListItem button key={index}>
+              <ListItemText
+                primary={item}
+                primaryTypographyProps={{
+                  style: { fontSize: "18px" },
+                }}
+              />
+            </ListItem>
+          ))}
+        </div>
+      </Drawer>
     </Container>
   );
 };
@@ -79,8 +91,9 @@ const CenterMenu = styled.div`
   a {
     font-weight: 550;
     font-size: 18px;
-    padding: 0 16px;
+    padding: 8px;
     flex-wrap: nowrap;
+    margin: 0 10px;
   }
 
   @media (max-width: 1280px) {
@@ -95,7 +108,8 @@ const RightMenu = styled.div`
   a {
     font-weight: 550;
     font-size: 18px;
-    padding: 0 16px;
+    padding: 8px;
+    margin: 0 10px;
     flex-wrap: nowrap;
   }
   @media (max-width: 1280px) {
@@ -111,29 +125,8 @@ const RightMenu = styled.div`
   }
 `;
 
-const BurgerNav = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  width: 320px;
-  list-style: none;
-  padding: 32px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-
-  li {
-    padding: 16px 0;
-
-    a {
-      font-weight: 600;
-    }
-  }
-`;
-
 const CloseWrapper = styled.div`
+  padding: 10px 0 20px 0;
   display: flex;
   justify-content: flex-end;
 `;

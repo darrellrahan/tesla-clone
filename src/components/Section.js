@@ -30,6 +30,8 @@ const Section = (prop) => {
 
 export default Section;
 
+// CSS
+
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
@@ -77,7 +79,9 @@ const RightButton = styled(LeftButton)`
   opacity: 0.7;
 `;
 
-const Buttons = styled.div``;
+const Buttons = styled.div`
+  margin-bottom: 20px;
+`;
 
 const DownArrow = styled.img`
   height: 40px;
